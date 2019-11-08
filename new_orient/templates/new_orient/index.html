@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Test for new_orient</title>
+    {% load static %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape/dist/cytoscape.js' %}"></script>
+    <script type="text/javascript" src="{% static 'new_orient/javascript/Modaal/dist/js/modaal.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'new_orient/style/cy_test.css' %}" />
+
+  </head>
+  <body>
+    <div class="header">
+        <h2>Welcome to the future New ORIENT!</h2>
+    </div>
+    
+    <div class="main">
+      <div class="maincontent">
+      </div>
+      <div class="clearfix">
+        機器 (Node) を追加 :
+          <input type="text" id="node_add_id" name="nai" placeholder="機器IDを入力">:
+          <input type="text" id="node_add_label" name="nal" placeholder="品名を入力">（
+          <input type="text" id="node_URL" name="nu" placeholder="商品サイトのURLを入力">）
+          <button id="addBtn" onclick="addNode()">追加</button></br>
+          <p>※機器を右クリックでURLへジャンプします</p></br>
+        接続 (Edge) を追加 :
+          <input type="text" id="edge_add_source_node_id" name="easni" placeholder="出力機器のIDを指定">
+          から
+          <input type="text" id="edge_add_target_node_id" name="eatni" placeholder="入力機器のIDを指定">
+          <input type="text" id="edge_add_label" name="eal" placeholder="配線種や接続方法を入力">
+          <button id="addBtn" onclick="addEdge()">追加</button></br></br>
+        機器または接続を削除 ： 対象をクリック　→　<button id="destroyBtn" onclick="destroy()">選択対象を削除</button>
+          <div id="cy"></div>
+          <script type="text/javascript" src="{% static 'new_orient/javascript/cy_test.js' %}"></script>
+      </div>
+    </div>
+
+    <div class="footer">
+      今後の計画：
+      <ul>
+        <li>機器追加はSUCCESSに基づき型番入力のみが目標（データベース連携）</li>
+        <li>接続追加はグラフ内でのクリック＆ドラッグ操作化したい</li>
+        <li>ラック・卓への機器マウントは図内ドラッグ＆ドロップでの操作としたい</li>
+        <li>機器を右クリック→機器詳細表示・機器変更ボタン→機器再入力→入出力数や信号規格の整合性、マウントスペースなどの自動確認</li>
+      </ul>
+    </div>
+  </body>
+</html>
