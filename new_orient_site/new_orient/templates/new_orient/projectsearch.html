@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+<!-- {% load static %} -->
+
+{% block title %}
+プロジェクト検索
+{% endblock title %}
+
+{% block js %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="{% static 'new_orient/javascript/projectsearch.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css">
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="main clearfix d-flex flex-row justify-content-center align-items-stretch" id="home">
+
+  <div class="side-content d-none d-md-inline-block">
+    <p>これはサイドバーです。</p>
+  </div>
+
+  <div class="maincontent d-inline-block">
+      <p>ここはプロジェクト検索画面です。</p>
+      <a class="nav-link" href="{% url 'new_orient:projectdetail' %}">プロジェクト詳細テストページ</a>
+      <div class="ProjectSearchForm">
+        <div class="projectdate">
+          <span class="oi oi-calendar">
+          検索範囲開始日<input type="text" id="projectDateFrom" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" style="width:20vw" readonly></span>
+          <span class="oi oi-calendar">
+          検索範囲終了日<input type="text" id="projectDateBy" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd" style="width:20vw" readonly></span>
+        </div>
+        <div class="projectgroup">
+          <input type="text" id="projectgroupID" placeholder="PJグループID" >
+          <input type="text" id="projectgroupname" placeholder="PJグループ名" style="width:20vw">
+        </div>
+        <div class="project">
+          <input type="text" id="projectgroupname" placeholder="プロジェクトID">
+          <input type="text" id="projectgroupname" placeholder="プロジェクト名" style="width:20vw">
+        </div>
+        <div class="projectstate">
+          
+        </div>
+        <div class="projectclient">
+          <input type="text" id="projectclient" placeholder="顧客名" style="width:20vw">
+        </div>
+        <div class="projectBS">
+          <input type="text" id="projectbudget" placeholder="受注額">
+          <input type="text" id="projectprofitrate" placeholder="利益率">
+        </div>
+        <div class="projectstaff">
+          <input type="text" id="projectstaff" placeholder="担当者">
+        </div>
+        <div class="usedproduct">
+          <input type="text" id="usedproductname" placeholder="品名" style="width:20vw">
+          <input type="text" id="usedproductcode" placeholder="型番" style="width:20vw">
+        </div>
+      </div>
+
+  </div>
+</div>
+{% endblock content %}

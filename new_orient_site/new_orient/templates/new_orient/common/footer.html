@@ -1,0 +1,26 @@
+<div class="footer">
+  今後の計画：
+  <ul>
+    <li>機器追加はSUCCESSに基づき型番入力のみが目標（データベース連携）</li>
+    <li>上記は現状ファイル分割（JSON形式）した影響で読み込めないが、onload形式の関数を使ってfor文内でaddNodeとaddEdgeを回せれば当面は理想的</li>
+    <li>上記動作を実装するにはModel設計を進めることが必要。当面はnodeについてはid,label,parent,hrefの実装で充分。</li>
+    <li>プロジェクトはProjectGroups、件名はProjects、部屋はRooms、機器のモデル名はEquipments、接続のモデル名はConnectionsで暫定</li>
+    <li>部門はDepartment、社員はStaffs、顧客はClients、仕入先はSuppliers</li>
+    <li>データベースの設計にはER図（Entity-Relationship Diagram）</li>
+    <li>ER図設計のまえにユースケース図（Entity-Relationship Diagram）</li>
+    <li>UML作成にはPyCharmを使う。PlantUML</li>
+    <li>ユースケース図＋ユースケース記述→アクティビティ図+シーケンス図→クラス図→ER図</li>
+    <li>接続追加はグラフ内でのクリック＆ドラッグ操作化したい</li>
+    <li>上記のためにはCytoscapeEdgeEditation.jsとcytoscape-edgehandles.jsの利用が良いかと思われる。仕様を要確認。</li>
+    <li>上記確認のうえ、必要な情報をDBへ格納できるようModel設計が必要。変数の洗い出し。</li>
+    <li>上記変数のうち最低限必要なものは、id,始点,終点,label。</li>
+    <li>ラック・卓への機器マウントは図内ドラッグ＆ドロップでの操作としたい</li>
+    <li>上記のためにcytoscape-compound-drag-and-drop.jsを利用。仕様を要確認。動くのはnodeのparentのみか？</li>
+    <li>edgeのid、始点、終点、label、nodeのid、parentは件名単位の情報。</li>
+    <li>nodeの品名、href、標準価格、定価は製品単位の情報。</li>
+    <li>機器を右クリック→機器詳細表示・機器変更ボタン→機器再入力→入出力数や信号規格の整合性、マウントスペースなどの自動確認</li>
+    <li>右クリック時の動作はcytoscape-context-menus.jsの機能を使ってポップアップメニュー化。modaal要らないかも？</li>
+    <li>入出力数や信号規格、U数の実装は後回し。その前に機器詳細ページの実装に移る。</li>
+    <li>ツールバーの実装も行う。cytoscape-toolbar.js</li>
+  </ul>
+</div>

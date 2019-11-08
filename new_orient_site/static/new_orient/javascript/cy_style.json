@@ -1,0 +1,50 @@
+{
+  "style": [
+    {
+      "selector": "node",
+      "css": {
+        "content": "function( ele ){ var this_id = ele.data(\"id\"); var this_label = ele.data(\"label\"); return this_id + \":\" + this_label;};",
+        "text-valign": "top",
+        "text-halign": "center",
+        "background-color": "blue"
+      }
+    },
+    {
+      "selector": "$node > node",
+      "css": {
+        "content": "function( ele ){ var this_id = ele.data(\"id\"); var this_label = ele.data(\"label\"); return this_id + \":\" + this_label;};",
+        "padding-top": "10px",
+        "padding-left": "10px",
+        "padding-bottom": "10px",
+        "padding-right": "10px",
+        "text-valign": "top",
+        "text-halign": "center",
+        "background-color": "cyan"
+      }
+    },
+    {
+      "selector": "edge",
+      "css": {
+        "content": "function( ele ){ var this_id = ele.data(\"id\"); var this_label = ele.data(\"label\"); if (this_label) { return this_id + \":\" + this_label; } else { return \"\";};",
+        "text-wrap": "wrap",
+        "text-valign": "top",
+        "text-halign": "center",
+        "target-arrow-shape": "triangle",
+        "arrow-scale": "2",
+        "target-endpoint": "outside-to-node",
+        "text-background-color": "#fff",
+        "text-background-shape": "roundrectangle",
+        "text-background-opacity": "0.8"
+      }
+    },
+    {
+      "selector": ":selected",
+      "css": {
+        "background-color": "red",
+        "line-color": "red",
+        "target-arrow-color": "red",
+        "source-arrow-color": "red"
+      }
+    }
+  ]
+}

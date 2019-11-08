@@ -1,0 +1,37 @@
+{
+  "name": "cytoscape-autopan-on-drag",
+  "version": "2.2.0",
+  "description": "An extension to automatically pan when nodes are out of canvas bounds.",
+  "main": "cytoscape-autopan-on-drag.js",
+  "spm": {
+    "main": "cytoscape-autopan-on-drag.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iVis-at-Bilkent/cytoscape.js-autopan-on-drag.git"
+  },
+  "keywords": [
+    "cytoscape",
+    "cyext"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iVis-at-Bilkent/cytoscape.js-autopan-on-drag/issues"
+  },
+  "homepage": "https://github.com/iVis-at-Bilkent/cytoscape.js-autopan-on-drag",
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-jshint": "^1.8.5",
+    "gulp-prompt": "^0.1.1",
+    "gulp-replace": "^0.4.0",
+    "gulp-shell": "^0.2.9",
+    "jshint-stylish": "^1.0.0",
+    "run-sequence": "^1.0.0"
+  },
+  "peerDependencies": {
+    "cytoscape": "^2.7.0 || ^3.0.0"
+  }
+}

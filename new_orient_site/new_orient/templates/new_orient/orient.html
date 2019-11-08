@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+<!--{% load static %} -->
+
+{% block title %}
+Diagraming
+{% endblock title %}
+
+{% block js %}
+<!-- Cytoscript.js本体-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.15/cytoscape.js"></script>
+<!-- Cytoscript.js ダブルクリックイベント実装-->
+  <script type="text/javascript" src="https://unpkg.com/cytoscape-dblclick/dist/index.js"></script>
+<!-- Cytoscript.js Ctrl-Z/Y実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-undo-redo-master/cytoscape-undo-redo.js' %}"></script>
+<!-- Cytoscript.js クリップボード実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-clipboard-master/cytoscape-clipboard.js' %}"></script>
+<!-- Cytoscript.js 検索機能とハイライト機能の実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-view-utilities-master/cytoscape-view-utilities.js' %}"></script>
+<!-- Cytoscript.js 描画エリア全体図の小窓表示実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-navigator-master/cytoscape-navigator.js' %}"></script>
+<!-- Cytoscript.js 右クリックメニュー実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-context-menus-master/cytoscape-context-menus.js' %}"></script>
+<!-- Cytoscript.js edgeのドラッグアンドドロップ追加実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/fork-cytoscape.js-edge-editation-master/CytoscapeEdgeEditation.js' %}"></script>
+<!-- Cytoscript.js edgeのドラッグアンドドロップ追加実装（スナップ機能あり）-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-edgehandles-master/cytoscape-edgehandles.js' %}"></script>
+<!-- Cytoscript.js edgeの折れ線追加実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-edge-editing-master/cytoscape-edge-bend-editing.js' %}"></script>
+<!-- Cytoscript.js 描画エリアのパンズームUI実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-panzoom-master/cytoscape-panzoom.js' %}"></script>
+<!-- Cytoscript.js Drag&Dropでのnodeの親子関係変更機能実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-compound-drag-and-drop-master/cytoscape-compound-drag-and-drop.js' %}"></script>
+<!-- Cytoscript.js nodeのサイズ変更実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-noderesize-master/cytoscape-noderesize.js' %}"></script>
+<!-- Cytoscript.js 描写エリアのドラッグオートパン実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-autopan-on-drag-master/cytoscape-autopan-on-drag.js' %}"></script>
+<!-- Cytoscript.js ツールバー・タブ実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape.js-toolbar-master/cytoscape-toolbar.js' %}"></script>
+<!-- Cytoscript.js グリッドスナップ実装-->
+  <script type="text/javascript" src="{% static 'new_orient/javascript/cytoscape-snap-to-grid-master/cytoscape-snap-to-grid.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'new_orient/style/cy_test.css' %}" />
+  <style type="text/css">
+    #cy {
+      background-color: #ffffff;
+    }
+    .maincontent > h2{
+      text-align: center;
+      background-color: #66ccff;
+      padding: 2em;
+    }
+    .required:before {
+      color: #E00;
+      content: " *";
+    }
+  </style>
+{% endblock %}
+
+{% block content %} <!--当該ページcontent特有の要素のスタイルシートについては、同html内のblock cssに記載のこと。-->
+  <div class="main clearfix d-flex flex-row justify-content-center align-items-stretch" id="index">
+
+    <div class="side-content d-none d-md-inline-block">
+      <p>これはサイドバーです。</p>
+
+    </div>
+
+    <div class="maincontent">
+      <p><h2>Orientシステム画面</h2></p>
+      <div class="explanation">
+        <p>
+          ここは、Orientシステムのテストページです。</br>
+          機器（Node）を追加した後、接続（Edge）の関係性を追加します。
+        </p>
+        <p><span style="color:red;font-weight:bold">※追加時は、機器・接続のそれぞれですべての欄が入力必須です。</span></p>
+      </div>
+      <div class="drawing">
+        <p>
+          <h5>機器 (Node) を追加 :</h5>
+          <table class="table" style="width:100%;background-color:#ffff99">
+            <tbody>
+              <tr>
+                <td class="required" style="text-align:center">機器ID：</td>
+                <td><input type="text" id="node_add_id" name="nai" placeholder="機器IDを入力" style="width:100%"></td>
+                <td  class="required" style="text-align:center">品名　：</td>
+                <td><input type="text" id="node_add_label" name="nal" placeholder="品名を入力" style="width:100%"></td>
+              </tr>
+              <tr>
+                <td class="required"  style="text-align:center">製品URL：</td>
+                <td colspan="3"><input type="text" id="node_URL" name="nu" placeholder="商品サイトのURLを入力" style="width:100%"></td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <tr>
+              <td><button id="addBtn" onclick="callAddNodeFromButton()">機器を追加</button></td>
+              <td colspan="3" style="valign:middle;padding-left:1em">※追加した機器を<span style="font-style:italic;border-bottom:solid 1px black">右クリック</span>することで製品URLへジャンプします（別ウィンドウ）。</td>
+            </tr>
+          </table>
+        </p>
+        
+        <p>
+          <h5>接続 (Edge) を追加 :</h5>
+          <table class="table" style="width:100%;background-color:#ffff99">
+            <tbody>
+              <tr>
+                <td align="center" class="required">始点</td>
+                <td style="border-right-style:none"><input type="text" id="edge_add_source_node_id" name="easni" placeholder="始点機器のIDを指定" style="width:100%"></td>
+                <td style="border-left-style:none">から</td>
+                <td align="center" class="required">終点</td>
+                <td style="border-right-style:none"><input type="text" id="edge_add_target_node_id" name="eatni" placeholder="終点機器のIDを指定" style="width:100%"></td>
+                <td style="border-left-style:none">へ</td>
+              </tr>
+              <tr>
+                <td align="center" class="required">接続方法</td>
+                <td colspan="5"><input type="text" id="edge_add_label" name="eal" placeholder="配線種や接続方法を入力" style="width:100%"></td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <tr>
+              <td><button id="addBtn" onclick="callAddEdgeFromButton()">接続を追加</button></td>
+            </tr>
+          </table>
+        </p>
+        機器または接続を削除 ： 対象をクリック　→　<button id="destroyBtn" onclick="destroy()">選択対象を削除</button>
+          <div id="cy"></div> <!-- 描写エリアのスタイルシートはhtml側に記載のこと -->
+          <script type="text/javascript" src="{% static 'new_orient/javascript/cy_test.js' %}" charset="utf-8"></script>
+      </div>
+      <div class="estimation">
+        
+      </div>
+    </div>
+
+  </div>
+{% endblock content %}
